@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>yesbanana</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+
+    <!-- Favicon -->
+    <link rel="icon" th:src="@{/core-img/yesb.png}">
+
+    <link th:href="@{/vendor/bootstrap-4.1/bootstrap.min.css}" rel="stylesheet" media="all">
+    <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+    <link th:href="@{/css/addTheses.css}" rel="stylesheet">
+    <link th:href="@{/css/crew.css} " rel="stylesheet">
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style1.css}">
+
+</head>
+
+<body>
+<!-- ##### Preloader ##### -->
+<div id="preloader">
+    <i class="circle-preloader"></i>
+</div>
+
+<!-- ##### Header Area Start ##### -->
+
+<header class="header-area">
+
+    <!-- Top Header Area -->
+    <div class="top-header">
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col-12 h-100">
+                    <div class="header-content h-100 d-flex align-items-center justify-content-between">
+                        <div class="academy-logo">
+                            <a th:href="@{/deals}"><i class="zmdi zmdi-home zmdi-hc-2x"></i><br><span>Acceuil</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navbar Area -->
+    <div class="academy-main-menu">
+        <div class="classy-nav-container breakpoint-off">
+            <div class="container">
+                <!-- Menu -->
+                <nav class="classy-navbar justify-content-between" id="academyNav">
+
+                    <!-- Navbar Toggler -->
+                    <div class="classy-navbar-toggler">
+                        <span class="navbarToggler"><span></span><span></span><span></span></span>
+                    </div>
+
+                    <!-- Menu -->
+                    <div class="classy-menu">
+
+                        <!-- close btn -->
+                        <div class="classycloseIcon">
+                            <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
+                        </div>
+
+                        <!-- Nav Start -->
+                        <div class="classynav">
+                            <ul>
+                                <li><a th:href="@{/}">Acceuil</a></li>
+                                <li><a th:href="@{/deals}">Commencez avec nous?</a></li>
+                                <li><a href="#">Travailler avec nous</a>
+                                    <ul class="dropdown">
+                                        <li><a href="#">Expert</a>
+                                            <ul class="dropdown">
+                                                <li><a th:href="@{/visitor/expert/universitory}">Universitaire</a></li>
+                                                <li><a th:href="@{/visitor/expert/professional}">Professionnel</a></li>
+                                            </ul>
+                                        </li>
+                                        <li><a th:href="@{/visitor/student}">Etudiant</a></li>
+                                        <li><a href="#">Enseignant</a>
+                                            <ul class="dropdown">
+                                                <li><a th:href="@{/visitor/teacher}">Primaire</a></li>
+                                                <li><a th:href="@{/visitor/teacher}">Secondaire</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Nav End -->
+                    </div>
+
+                    <!-- Calling Info -->
+                    <div class="calling-info">
+                        <div class="call-center">
+                            <a href="#"> <span>solutioneducationafrique@gmail.com</span></a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- ##### Header Area End ##### -->
+<div class="container">
+<h2 class="text-center mt-5">Selectionner une Université</h2>
+<div class="row content mt-3">
+    <div class="col-3  text-center crew mb-2" th:each="university : ${universities}" style="padding:.5rem;">
+        <div class="card">
+            <div style="background-color:whitesmoke; color:black">
+                <div class="card-img-top" style="color:white;line-height:5rem;font-size:5rem;background-color:lightseagreen;border-radius: 50%;width:5rem;margin:auto;height: 5rem;">
+                    <span th:text="${university.universityName[0]}"> Yaounde</span>
+                </div>
+                <a th:text="${university.universityName}" th:href="@{/external/secure/university/university/} + ${university.universityId}"> Yaounde</a>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- ##### Footer Area Start ##### -->
+<footer class="footer-area">
+    <!-- Top Footer Area -->
+    <div class="top-footer-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!-- Footer Logo -->
+                    <div class="footer-logo">
+                        <a th:href="@{/}"><img th:src="@{/img/core-img/yesb.png}" alt=""></a>
+                    </div>
+                    <!-- Copywrite -->
+                    <p><a href="#"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;<script>document.write(new Date().getFullYear());</script> Tous les droits sont réservés | cette page faite <i class="fa fa-heart-o" aria-hidden="true"></i> par <a href="https://yesbanana.org" target="_blank">Yesbanana</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Footer Area -->
+    <div class="bottom-footer-area d-flex justify-content-between align-items-center">
+        <!-- Contact Info -->
+        <div class="contact-info">
+            <a href="#"><span>Phone:</span> +237 694 126 158</a>
+            <a href="#"><span>Email:</span> admin@yesbanana.org</a>
+        </div>
+        <!-- Follow Us -->
+        <div class="follow-us">
+            <span>Suivez-nous</span>
+            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+        </div>
+    </div>
+</footer>
+<!-- ##### Footer Area End ##### -->
+</div>
+
+<!-- ##### All Javascript Script ##### -->
+<!-- jQuery-2.2.4 js -->
+<script th:src="@{/js/jquery/jquery-2.2.4.min.js}"></script>
+<!-- Popper js -->
+<script th:src="@{/js/bootstrap/popper.min.js}"></script>
+<!-- Bootstrap js -->
+<script th:src="@{/js/bootstrap/bootstrap.min.js}"></script>
+<!-- All Plugins js -->
+<script th:src="@{/js/plugins/plugins.js}"></script>
+<!-- Active js -->
+<script th:src="@{/js/active.js}"></script>
+</body>
+
+</html>

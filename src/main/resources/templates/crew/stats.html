@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Neword">
+
+    <!-- Title Page-->
+    <title>Statistiques du groupe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- thymleaf -->
+
+    <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+    <!-- Bootstrap CSS-->
+    <link th:href="@{/vendor/bootstrap-4.1/bootstrap.min.css}" rel="stylesheet" media="all">
+
+
+<body class="row">
+
+
+<!-- sidebar-->
+<div th:replace="~{../templates/fragments/sidebar :: sidebar}">
+</div>
+<!-- sidebar-->
+
+<!--navigation-->
+<div th:replace="~{../templates/fragments/navigationcrew :: navigationcrew}">
+</div>
+<!-- navigation -->
+<div class="col-11 offset-1 main">
+    <!-- statistiques -->
+    <div class="row justify-content-center content" style="margin-top: 5.5rem;">
+        <h3 class="col-12 text-center mt-3">Statistiques du groupe</h3>
+        <div class="col-12 mt-3 card p-5">
+            <div class="row">
+                <div class="col-6 text-center mt-3" >
+                    <ul class="list-group">
+                        <li class="list-group-item active"><span th:text="${usersSize}">20</span> Utilisateurs</li>
+                    </ul>
+                </div>
+                <div class="col-6 text-center mt-3" >
+                    <ul class="list-group">
+                        <li class="list-group-item active"><span th:text="${thesesSize}">20</span> Thèses</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- statistiques -->
+</div>
+<!--vendor scripts -->
+<div th:insert="~{../templates/fragments/scripts :: scripts}"></div>
+<!--vendor scripts -->
+<!-- ##### All Javascript Script ##### -->
+<!-- jQuery-2.2.4 js -->
+<script th:src="@{/js/jquery/jquery-2.2.4.min.js}"></script>
+<!-- Popper js -->
+<script th:src="@{/js/bootstrap/popper.min.js}"></script>
+<!-- Bootstrap js -->
+<script th:src="@{/js/bootstrap/bootstrap.min.js}"></script>
+<!-- All Plugins js -->
+<script th:src="@{/js/plugins/plugins.js}"></script>
+<!-- Active js -->
+<script th:src="@{/js/active.js}"></script>
+
+</body>
+
+</html>

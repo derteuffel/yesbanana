@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Neword">
+    <!-- Title Page-->
+    <title>Les groupes</title>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+    <!-- Bootstrap CSS-->
+    <link th:href="@{/vendor/bootstrap-4.1/bootstrap.min.css}" rel="stylesheet" media="all">
+    <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+    <link th:href="@{/css/addTheses.css}" rel="stylesheet">
+    <link th:href="@{/css/crew.css} " rel="stylesheet">
+
+
+<body class="row">
+<!--navigation-->
+<div th:replace="~{../templates/fragments/navigationcrew :: navigationcrew}">
+</div>
+<!-- navigation -->
+<!-- sidebar-->
+<div th:replace="~{../templates/fragments/sidebar :: sidebar}">
+</div>
+<!-- sidebar-->
+<div class="col-11 offset-1 main" style="margin-top: 5.5rem">
+    <h2 class="text-center mt-3">Equipe d'accompagnement</h2>
+    <div class="row content mt-3" >
+        <div class="col-3  text-center crew mb-2"  style="padding:.5rem;">
+            <div class="card">
+                <div  class=" row deleteUpdate " style="position:absolute;z-index:1000;width:100%;margin:auto"    >
+                    <div class="col-6 text-left" style="padding:0">
+                        <a th:href="@{/groupe/encadrement/chef/} + ${groupe.groupeId}" class="btn btn-success rounded-circle" sec:authorize="!hasRole('ROLE_USER')" style="color:black;cursor: pointer;text-decoration:none">
+                            <i class="zmdi zmdi-eye" ></i>
+                        </a>
+                    </div>
+                </div>
+                <div style="background-color:teal; color:white" >
+                    <span > Chef des Travaux</span>
+                    <div class="card-img-top" style="color:white;line-height:5rem;font-size:5rem;background-color:lightseagreen;border-radius: 50%;width:5rem;margin:auto;height: 5rem;">
+                        <span >C</span>
+                    </div>
+                </div>
+                <hr style="margin:.2rem">
+
+            </div>
+
+        </div>
+        <div class="col-3  text-center crew mb-2"  style="padding:.5rem;">
+            <div class="card">
+                <div  class=" row deleteUpdate " style="position:absolute;z-index:1000;width:100%;margin:auto"    >
+                    <div class="col-6 text-left" style="padding:0">
+                        <a th:href="@{/groupe/encadrement/assistant/} + ${groupe.groupeId}" class="btn btn-success rounded-circle" sec:authorize="!hasRole('ROLE_USER')" style="color:black;cursor: pointer;text-decoration:none">
+                            <i class="zmdi zmdi-eye" ></i>
+                        </a>
+                    </div>
+                </div>
+                <div style="background-color:teal; color:white" >
+                    <span >Assistant</span>
+                    <div class="card-img-top" style="color:white;line-height:5rem;font-size:5rem;background-color:lightseagreen;border-radius: 50%;width:5rem;margin:auto;height: 5rem;">
+                        <span >A</span>
+                    </div>
+                </div>
+                <hr style="margin:.2rem">
+            </div>
+        </div>
+        <div class="col-3  text-center crew mb-2"  style="padding:.5rem;">
+                <div class="card">
+                    <div  class=" row deleteUpdate " style="position:absolute;z-index:1000;width:100%;margin:auto"    >
+                        <div class="col-6 text-left" style="padding:0">
+                            <a th:href="@{/groupe/encadrement/encadreur/} + ${groupe.groupeId}" class="btn btn-success rounded-circle" sec:authorize="!hasRole('ROLE_USER')" style="color:black;cursor: pointer;text-decoration:none">
+                                <i class="zmdi zmdi-eye" ></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div style="background-color:teal; color:white" >
+                        <span > Encadreur</span>
+                        <div class="card-img-top" style="color:white;line-height:5rem;font-size:5rem;background-color:lightseagreen;border-radius: 50%;width:5rem;margin:auto;height: 5rem;">
+                            <span >E</span>
+                        </div>
+                    </div>
+                    <hr style="margin:.2rem">
+                </div>
+        </div>
+        <div class="col-3  text-center crew mb-2"  style="padding:.5rem;">
+            <div class="card">
+                <div  class=" row deleteUpdate " style="position:absolute;z-index:1000;width:100%;margin:auto"    >
+                    <div class="col-6 text-left" style="padding:0">
+                        <a th:href="@{/groupe/encadrement/etudiant/} + ${groupe.groupeId}" class="btn btn-success rounded-circle" style="color:black;cursor: pointer;text-decoration:none">
+                            <i class="zmdi zmdi-eye" ></i>
+                        </a>
+                    </div>
+                </div>
+                <div style="background-color:teal; color:white" >
+                    <span> Etudiant</span>
+                    <div class="card-img-top" style="color:white;line-height:5rem;font-size:5rem;background-color:lightseagreen;border-radius: 50%;width:5rem;margin:auto;height: 5rem;">
+                        <span>E</span>
+                    </div>
+                </div>
+                <hr style="margin:.2rem">
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+<!--script-->
+<!--vendor scripts -->
+<div th:insert="~{../templates/fragments/scripts :: scripts}"></div>
+<!--vendor scripts -->
+<script th:src="@{/js/crew.js}"></script>
+<!--script-->
+
+</body>
+
+</html>

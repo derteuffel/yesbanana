@@ -1,0 +1,201 @@
+    <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="Neword">
+
+    <!-- Title Page-->
+    <title>Les utilisateurs d'un groupe</title>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css">
+
+    <!-- thymleaf -->
+
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+    <link th:href="@{/css/user.css}" rel="stylesheet">
+    <!-- Bootstrap CSS-->
+    <link th:href="@{/vendor/bootstrap-4.1/bootstrap.min.css}" rel="stylesheet" media="all">
+    <link th:href="@{/css/addTheses.css}" rel="stylesheet">
+    <style>
+        .pagination>li>a, .pagination>li>span { border-radius: 50% !important;margin: 0 5px;}
+    </style>
+<body class="row">
+
+<!--navigation-->
+<div th:replace="~{../templates/fragments/navigationcrew :: navigationcrew}">
+</div>
+<!-- navigation -->
+<!-- sidebar-->
+<div th:replace="~{../templates/fragments/sidebar :: sidebar}">
+</div>
+<!-- sidebar-->
+<div class="col-11 offset-1 main">
+    <div class="row justify-content-center content" style="margin-top: 5.5rem;">
+        <h3 class="col-12 text-center mt-3">Utilisateurs de la région</h3>
+        <div class="col-12 col-sm-12 col-lg-12" >
+            <table  class="table table-bordered table-hover table-lg display">
+                <thead class="thead-light">
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Pays</th>
+                    <th>Region</th>
+                    <th>Numero</th>
+                    <th>Actions</th>
+                </thead>
+                <tbody>
+                    <tr th:each="user: ${users}">
+                        <td th:text="${user.name}"></td>
+                        <td th:text="${user.email}"></td>
+                        <td th:text="${user.country}"></td>
+                        <td th:text="${user.region}"></td>
+                        <td th:text="${user.number}"></td>
+                        <td>
+                            <a th:href="@{/user/staffs/}+${user.userId}"class=" btn btn-success" > Ouvrir <i class="fa fa-eye"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a data-toggle="modal" data-target="#modal-warning" th:attr="data-target='#modal-warning'+${user.userId }" class="btn btn-danger" ><i class="fa fa-trash"></i></a>
+                        </td>
+                        <!-- Delete user modal -->
+                        <div class="modal card modal-warning fade in" th:id="modal-warning+${user.userId }" >
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header text-center">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span></button>
+                                        <h5 class="modal-title">Supprimer un utilisateur</h5>
+                                    </div>
+                                    <div class="modal-body text-center">
+                                        <h3>Etes vous sure de vouloir supprimer définitivement cette Utilisateur?</h3>
+                                    </div>
+                                    <div class="modal-footer text-center">
+                                        <button type="button" class="btn btn-warning pull-left" data-dismiss="modal">Close</button>
+                                        <a type="button" class="btn btn-danger" th:href="@{/user/delete/{userId}(userId=${user.userId})}"><i class="fa fa-check"></i>&nbsp;Yes</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Delete user modal -->
+                    </tr>
+                </tbody>
+            </table>
+            <div class="row " style="bottom: 1rem;width: 100%;">
+                <div class="form-group col-12 col-sm-6 col-lg-3">
+                    <select class="form-control pagination" id="pageSizeSelect">
+                        <option th:each="pageSize : ${pageSizes}" th:text="${pageSize}"
+                                th:value="${pageSize}"
+                                th:selected="${pageSize} == ${selectedPageSize}"></option>
+                    </select>
+                </div>
+                <div th:if="${users.totalPages != 1}"
+                     class="form-group col-12 col-sm-6 col-lg-9 pagination-centered">
+                    <ul class="pagination">
+                        <li th:class="${users.number == 0} ? disabled" class="page-item" ><a
+                                class="page-link"
+                                th:href="@{/groupe/users(pageSize=${selectedPageSize}, page=1)}">«</a>
+                        </li>
+                        <li th:class="${users.number == 0} ? disabled" class="page-item" ><a
+                                class="page-link"
+                                th:href="@{/groupe/users(pageSize=${selectedPageSize}, page=${users.number})}">←</a>
+                        </li>
+                        <li
+                                th:class="${users.number == (page - 1)} ? 'active pointer-disabled'"
+                                th:each="page : ${#numbers.sequence(pager.startPage, pager.endPage)}" class="page-item active" >
+                            <a class="page-link"
+                               th:href="@{/groupe/users(pageSize=${selectedPageSize}, page=${page})}"
+                               th:text="${page}"></a>
+                        </li>
+                        <li
+                                th:class="${users.number + 1 == users.totalPages} ? disabled" class="page-item">
+                            <a class="page-link"
+                               th:href="@{/groupe/users(pageSize=${selectedPageSize}, page=${users.number + 2})}">→</a>
+                        </li>
+                        <li
+                                th:class="${users.number + 1 == users.totalPages} ? disabled" class="page-item">
+                            <a class="page-link"
+                               th:href="@{/groupe/users(pageSize=${selectedPageSize}, page=${users.totalPages})}">»</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <button type="button" class="addButton btn btn-primary rounded-circle" data-toggle="modal" data-target="#addUserIntoCrew">
+            <i class="zmdi zmdi-plus zmdi-hc-2x"></i>
+            </i>
+        </button>
+        <!--addUserIntoCrew-->
+        <div class=" modal fade" id="addUserIntoCrew" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+            <form class=" modal-content card text-center" th:object="${usersGroupe}" th:action="@{/groupe/add/users}" style="padding:1rem;" method="post">
+                <input type="text" th:field="*{usersIds}" name="usersIds" id="usersId" value="" style="display:none">
+                <div class="form-group row">
+                    <div class="col-6">
+                        <button data-dismiss="modal" style="width:100%;" class="btn btn-danger">Cancel</button>
+                    </div>
+                    <div class="col-6">
+                        <button type="submit" id="submit" style="width:100%;"  class="btn btn-success">Valider</button>
+                    </div>
+                </div>
+                <ul class="list-group">
+                    <li  th:each=" user : ${users1}"  th:value="${user.userId}" th:text="${user.name}" class="list-group-item user-item">
+                        Testing
+                    </li>
+                </ul>
+
+            </form>
+        </div>
+
+</div>
+        <!-- addUserIntoCrew-->
+    </div>
+    </div>
+
+<!-- update role-->
+    <!--vendor scripts -->
+    <div th:insert="~{../templates/fragments/scripts :: scripts}"></div>
+    <!--vendor scripts -->
+    <script th:src="@{/js/users.js}"></script>
+<script th:src="@{/vendor/jquery/jquery.min.js}"></script>
+<script th:src="@{/vendor/bootstrap-4.1/bootstrap.min.js}"></script>
+<script th:src="@{/vendor/bootstrap-4.1/popper.min.js}"></script>
+<!-- ##### All Javascript Script ##### -->
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    $(document).ready(function() {
+        changePageAndSize();
+    });
+    function changePageAndSize() {
+        $('#pageSizeSelect').change(function(evt) {
+            window.location.replace("/groupe/users?pageSize=" + this.value + "&page=1");
+        });
+    }
+    /*]]>*/
+</script>
+<!-- jQuery-2.2.4 js -->
+<script th:src="@{/js/jquery/jquery-2.2.4.min.js}"></script>
+<!-- Popper js -->
+<script th:src="@{/js/bootstrap/popper.min.js}"></script>
+<!-- Bootstrap js -->
+<script th:src="@{/js/bootstrap/bootstrap.min.js}"></script>
+<!-- All Plugins js -->
+<script th:src="@{/js/plugins/plugins.js}"></script>
+<!-- Active js -->
+<script th:src="@{/js/active.js}"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    $(document).ready(function() {
+        changePageAndSize();
+    });
+    function changePageAndSize() {
+        $('#pageSizeSelect').change(function(evt) {
+            window.location.replace("/groupe/groupe/user/{groupeId}?pageSize=" + this.value + "&page=1");
+        });
+    }
+    /*]]>*/
+</script>
+
+</body>
+
+</html>
